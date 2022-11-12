@@ -14,14 +14,14 @@ function _drawNotes() {
 
 function _drawActiveNote() {
   let activeNote = appState.activeNote
-  console.log('drawing active', activeNote)
+  // console.log('drawing active', activeNote)
   setHTML('active-note', activeNote.ActiveTemplate)
 }
 
 
 export class NotesController {
   constructor() {
-    console.log('controller is working')
+    // console.log('controller is working')
     appState.on('notes', _drawNotes)
     appState.on('activeNote', _drawActiveNote)
     _drawNotes()
@@ -32,19 +32,19 @@ export class NotesController {
     window.event.preventDefault()
     const form = window.event.target
     let noteData = getFormData(form)
-    console.log(noteData)
+    // console.log(noteData)
     noteService.createNotes(noteData)
     form.reset()
   }
 
   setActive(id) {
-    console.log('setting active', id)
+    // console.log('setting active', id)
     noteService.setActive(id)
   }
 
   saveNote() {
-    let newContent = document.querySelector('content')
-    noteService.saveNote(newContent, '')
+    let newContent = document.querySelector('.content')
+    noteService.saveNote(newContent.value)
   }
 
   async removeNote(id) {

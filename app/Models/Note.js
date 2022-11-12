@@ -38,7 +38,7 @@ export class Note {
           <div class="my-2 p-1">Created On: ${this.ComputeFullDate}</div>
           <div class="my-2 p-1">Updated On:</div>
         </div>
-        <textarea class="col-8 my-3" name="content" id="content" cols="30" rows="25" onblur="app.notesController.saveNote()">${this.content}</textarea>
+        <textarea class="col-8 my-3 content" name="" id="" cols="30" rows="25" onblur="app.notesController.saveNote()">${this.content}</textarea>
       </div>
     </div>
     `
