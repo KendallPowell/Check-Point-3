@@ -16,7 +16,7 @@
 </head>
 
 
-<body class="bg-dark">
+<body class="bg-hero">
   <header class="row justify-content-start container-fluid mt-3">
     <div class="col-4 text-light fs-1 fw-bold no-select">
       <i class="ms-3 mdi mdi-alpha-j-circle-outline"></i>
@@ -25,31 +25,18 @@
       <i class="mdi mdi-music-note-whole"></i>
     </div>
     <div class="col-7"></div>
-    <div class="col-1 text-light text-center fs-1 fw-bold text-end selectable">
-      <i class="mdi mdi-content-save-all"></i>
+    <div class="col-1 text-center d-flex align-items-center justify-content-center">
+      <i class="mdi mdi-content-save-all btn text-light fs-5 fw-bold border border-1 border-white" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"></i>
     </div>
   </header>
 
 
   <main>
     <div class="container-fluid">
-      <section id="notes-list" class="row">
-        <!-- NOTE title selection Template-->
-        <!-- <div class="col-4 bg-secondary elevation-2 my-3">
-          <div class="row">
-            <div class="col-12 p-2 selectable" onclick="app.casesController.setActive()">
-              <div class="row">
-                <div class="col-3">Tyranny of Dragons</div>
-                <div class="col-2">School</div>
-                <div class="col-3">11/11/2022</div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </section>
-      <!-- NOTE new notes form -->
-      <section class="row">
-        <div class="col-2">
+      <div class="row">
+        <!-- NOTE New notes form -->
+        <section class="col-2">
           <h5 class="mt-5 text-light text-center">Add New Notes</h5>
           <form class="d-flex flex-wrap" onsubmit="app.notesController.createNotes()">
             <input class="form-control w-100" type="text" id="title" name="title" required minlength="3" maxlength="15"
@@ -59,31 +46,32 @@
               <option></option>
               <option value="d&d">Dungeons and Dragons</option>
               <option value="school">School</option>
+              <option value="Maybe later?">Maybe later?</option>
             </select>
             <input class="form-control w-79" type="date" name="date" id="date" title="date created">
-            <input type="color" class="form-control form-control-color" id="color" value="#000000"
+            <input type="color" class="form-control form-control-color" name="color" id="color" value="#000000"
               title="Choose your color">
             <button class="btn btn-primary w-100" title="Make Notes"><i class="mdi mdi-plus"></i></button>
           </form>
-        </div>
-      </section>
-      <!-- NOTE Note Section Template -->
-      <div class="col-8 ">
-        <div id="active-note" class="row">
-          <!-- <div class="col-12 bg-secondary text-light border border-4 border-danger">
-            <div class="row">
-              <div class="col-3 mt-2 text-bold">
-                <div class="my-2 p-1 fs-4 fw-bold">Title</div>
-                <div class="my-2 p-1">Type:</div>
-                <div class="my-2 p-1">Created At:</div>
-                <div class="my-2 p-1">Updated At:</div>
+        </section>
+        <!-- NOTE Active Notes Template -->
+        <div class="col-10">
+          <div id="active-note" class="row justify-content-center">
+            <!-- <div class="col-8 bg-secondary text-light border border-4 border-danger">
+              <div class="row">
+                <div class="col-3 mt-2 text-bold">
+                  <div style="color:green" class="my-2 p-1 fs-4 fw-bold">Title</div>
+                  <div class="my-2 p-1">Type:</div>
+                  <div class="my-2 p-1">Created At:</div>
+                  <div class="my-2 p-1">Updated At:</div>
+                </div>
+                <textarea class="col-8 my-3" name="" id="" cols="30" rows="25"></textarea>
+                <div class="col-1 text-danger text-center fs-2 fw-bold text-end selectable my-2 p-1">
+                  <i class="mdi mdi-delete-off-outline"></i>
+                </div>
               </div>
-              <textarea class="col-8 my-3" name="" id="" cols="30" rows="25"></textarea>
-              <div class="col-1 text-danger text-center fs-2 fw-bold text-end selectable my-2 p-1">
-                <i class="mdi mdi-delete-off-outline"></i>
-              </div>
-            </div>
-          </div> -->
+            </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -93,6 +81,32 @@
       <p><small>Taking notes has never been easier!</small></p>
     </div>
   </footer>
+
+
+
+  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Note Section</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!-- NOTE Title selection Template-->
+    <div class="offcanvas-body container-fluid">
+      <div id="note-list" class="row justify-content-center">
+        <!-- <div class="col-10 bg-secondary elevation-2 my-3 m-1">
+          <div class="row">
+            <div class="col-12 selectable">
+              <div class="row justify-content-evenly p-2 text-center">
+                <div style="color: blue;" class="col">Tyranny of...</div>
+                <div class="col">11/11/2022</div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

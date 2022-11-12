@@ -9,24 +9,12 @@ class AppState extends EventEmitter {
   // values = loadState('values', [Value])
 
   /** @type {import('./Models/Note').Note[]} */
-  notes = [
-    new Note({
-      title: 'Tyranny of Dragons',
-      type: 'D&D',
-    }),
-    new Note({
-      title: 'JavaScript',
-      type: 'School',
-    }),
-    new Note({
-      title: 'Rime of hte FrostMaiden',
-      type: 'D&D',
-    })
-  ]
+  notes = []
 
-  // notes = loadState('notes', [Note])
 
-  // activeNote = null
+  notes = loadState('notes', [Note])
+
+  activeNote = null
 }
 
 export const appState = new Proxy(new AppState(), {
