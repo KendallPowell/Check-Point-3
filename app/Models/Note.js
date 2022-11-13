@@ -15,10 +15,10 @@ export class Note {
     this.updatedTime = data.updatedTime ? new Date(data.updatedTime) : new Date()
     this.content = data.content || ""
   }
-  // <div?> Notes Section ${appState.notes.length} </div?>
+
   get ListTemplate() {
     return `
-    <div class="col-10 bg-secondary elevation-2 my-3 m-1">
+    <div class="col-10 bg-secondary elevation-2 my-3 m-1 rounded">
       <div class="row">
         <div class="col-12 selectable" onclick="app.notesController.setActive('${this.id}')">
           <div class="row justify-content-evenly p-2 text-center">
@@ -36,7 +36,7 @@ export class Note {
 
   get ActiveTemplate() {
     return `
-    <div style="border-color:${this.color}!important" class="col-10 bg-secondary text-light border border-4">
+    <div style="border-color:${this.color}!important" class="col-10 bg-secondary text-dark border border-2 shadow-lg">
       <div class="row">
         <div class="col-3 mt-2 text-bold">
           <div style="color: ${this.color}" class="my-2 p-1 fs-4 fw-bold">${this.title}</div>
@@ -44,7 +44,7 @@ export class Note {
           <div class="my-2 p-1">Created On: ${_computeDate(this.date)}</div>
           <div class="my-2 p-1">Updated On: ${_computeDate(this.updatedTime)}</div>
         </div>
-        <textarea class="col-8 my-3 content" name="" id="" cols="30" rows="25" onblur="app.notesController.saveNote()">${this.content}</textarea>
+        <textarea class="col-8 my-3 content shadow-lg" name="" id="" cols="30" rows="30" onblur="app.notesController.saveNote()">${this.content}</textarea>
       </div>
     </div>
     `

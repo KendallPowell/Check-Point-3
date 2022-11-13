@@ -30,11 +30,11 @@ export class NotesController {
     appState.on('activeNote', _drawActiveNote)
     _drawNotes()
     console.log(appState.notes.length)
-    setInterval(() => {
-      if (appState.activeNote) {
-        this.saveNote()
-      }
-    }, 3000)
+    // setInterval(() => {
+    //   if (appState.activeNote) {
+    //     this.saveNote()
+    //   }
+    // }, 3000)
 
   }
 
