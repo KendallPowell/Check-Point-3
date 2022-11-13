@@ -3,13 +3,14 @@ import { Value } from "./Models/Value.js"
 import { EventEmitter } from "./Utils/EventEmitter.js"
 import { isValidProp } from "./Utils/isValidProp.js"
 import { loadState } from "./Utils/Store.js"
-
+// @ts-check
 class AppState extends EventEmitter {
   // /** @type {import('./Models/Value').Value[]} */
   // values = loadState('values', [Value])
 
   /** @type {import('./Models/Note').Note[]} */
   notes = []
+
 
 
   notes = loadState('notes', [Note])

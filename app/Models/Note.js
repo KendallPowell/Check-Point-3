@@ -1,4 +1,9 @@
+import { appState } from "../AppState.js";
 import { generateId } from "../Utils/generateId.js";
+
+function _computeDate(date) {
+  return date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric", time: "short" }) + " : " + date.toLocaleTimeString('en-us', { timeStyle: "medium" })
+}
 
 export class Note {
   constructor(data) {
@@ -7,9 +12,10 @@ export class Note {
     this.type = data.type
     this.color = data.color
     this.date = data.date ? new Date(data.date) : new Date()
-    this.content = data.content
+    this.updatedTime = data.updatedTime ? new Date(data.updatedTime) : new Date()
+    this.content = data.content || ""
   }
-
+  // <div?> Notes Section ${appState.notes.length} </div?>
   get ListTemplate() {
     return `
     <div class="col-10 bg-secondary elevation-2 my-3 m-1">
@@ -17,7 +23,7 @@ export class Note {
         <div class="col-12 selectable" onclick="app.notesController.setActive('${this.id}')">
           <div class="row justify-content-evenly p-2 text-center">
             <div style="color: ${this.color};" class="col">${this.ComputeTitle}</div>
-            <div class="col">${this.ComputeDate}</div>
+            <div class="col">${_computeDate(this.updatedTime)}</div>
           </div>
         </div>
       </div>
@@ -30,13 +36,13 @@ export class Note {
 
   get ActiveTemplate() {
     return `
-    <div style="border-color:${this.color}" class="col-10 bg-secondary text-light border border-4">
+    <div style="border-color:${this.color}!important" class="col-10 bg-secondary text-light border border-4">
       <div class="row">
         <div class="col-3 mt-2 text-bold">
           <div style="color: ${this.color}" class="my-2 p-1 fs-4 fw-bold">${this.title}</div>
           <div class="my-2 p-1">Type: ${this.type}</div>
-          <div class="my-2 p-1">Created On: ${this.ComputeFullDate}</div>
-          <div class="my-2 p-1">Updated On:</div>
+          <div class="my-2 p-1">Created On: ${_computeDate(this.date)}</div>
+          <div class="my-2 p-1">Updated On: ${_computeDate(this.updatedTime)}</div>
         </div>
         <textarea class="col-8 my-3 content" name="" id="" cols="30" rows="25" onblur="app.notesController.saveNote()">${this.content}</textarea>
       </div>
@@ -54,12 +60,7 @@ export class Note {
     }
   }
 
-  get ComputeDate() {
-    let date = this.date
-    return (date.getMonth() + 1) + '/' + (date.getDate()) + '/' + date.getFullYear()
-  }
-
   get ComputeFullDate() {
-    return this.date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
+    return date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
   }
 }

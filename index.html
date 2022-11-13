@@ -26,7 +26,7 @@
     </div>
     <div class="col-7"></div>
     <div class="col-1 text-center d-flex align-items-center justify-content-center">
-      <i class="mdi mdi-content-save-all btn text-light fs-5 fw-bold border border-1 border-white" type="button"
+      <i class="mdi mdi-notebook btn text-light fs-5 fw-bold border border-1 border-white" type="button"
         data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"></i>
     </div>
   </header>
@@ -38,20 +38,19 @@
         <!-- NOTE New notes form -->
         <section class="col-2">
           <h5 class="mt-5 text-light text-center">Add New Notes</h5>
-          <form class="d-flex flex-wrap" onsubmit="app.notesController.createNotes()">
+          <form class="d-flex flex-wrap justify-content-center" onsubmit="app.notesController.createNotes()">
             <input class="form-control w-100" type="text" id="title" name="title" required minlength="3" maxlength="15"
               placeholder="Title">
             <br />
             <select class="form-control w-100" name="type" id="type" required title="type of notes">
               <option></option>
-              <option value="d&d">Dungeons and Dragons</option>
+              <option value="Dungeons & Dragons">Dungeons and Dragons</option>
               <option value="school">School</option>
               <option value="Maybe later?">Maybe later?</option>
             </select>
-            <input class="form-control w-79" type="date" name="date" id="date" title="date created">
-            <input type="color" class="form-control form-control-color" name="color" id="color" value="#000000"
+            <input type="color" class="form-control form-control-color w-20" name="color" id="color" value="#000000"
               title="Choose your color">
-            <button class="btn btn-primary w-100" title="Make Notes"><i class="mdi mdi-plus"></i></button>
+            <button class="btn btn-primary w-80" title="Make Notes"><i class="mdi mdi-plus"></i></button>
           </form>
         </section>
         <!-- NOTE Active Notes Template -->
@@ -83,11 +82,11 @@
   </footer>
 
 
-
+  <audio id="audioEffect" autoplay="false" src="./Godzilla-Marc-785758480.mp3"></audio>
   <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="staticBackdropLabel">Note Section</h5>
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Total Notes: <span id="total-notes">0</span></h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <!-- NOTE Title selection Template-->

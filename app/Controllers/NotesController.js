@@ -2,14 +2,18 @@ import { appState } from "../AppState.js"
 import { noteService } from "../Services/NotesService.js"
 import { getFormData } from "../Utils/FormHandler.js"
 import { Pop } from "../Utils/Pop.js"
-import { setHTML } from "../Utils/Writer.js"
+import { setHTML, setText } from "../Utils/Writer.js"
+
 
 
 function _drawNotes() {
   let notes = appState.notes
+  let length = appState.notes.length
   let template = ''
+  notes.sort((a, b) => b.updatedTime - a.updatedTime)
   notes.forEach(n => template += n.ListTemplate)
   setHTML('note-list', template)
+  setText('total-notes', length)
 }
 
 function _drawActiveNote() {
@@ -25,6 +29,12 @@ export class NotesController {
     appState.on('notes', _drawNotes)
     appState.on('activeNote', _drawActiveNote)
     _drawNotes()
+    console.log(appState.notes.length)
+    setInterval(() => {
+      if (appState.activeNote) {
+        this.saveNote()
+      }
+    }, 3000)
 
   }
 
@@ -49,7 +59,11 @@ export class NotesController {
 
   async removeNote(id) {
     if (await Pop.confirm('Godzilla gonna eat that Note')) {
+      let audioElm = document.getElementById("audioEffect")
+      audioElm.play()
+      audioElm.volume = 0.3
       noteService.removeNote(id)
     }
   }
 }
+

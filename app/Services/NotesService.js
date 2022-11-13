@@ -25,6 +25,8 @@ class NotesService {
     saveNote(newContent) {
         let activeNote = appState.activeNote
         activeNote.content = newContent
+        activeNote.updatedTime = new Date()
+        // appState.notes.find(n=> n.id == appState.activeNote.id).content = newContent
         appState.emit('activeNote')
         saveState('notes', appState.notes)
     }
@@ -35,6 +37,8 @@ class NotesService {
         saveState('notes', appState.notes)
     }
 }
+
+
 
 
 export const noteService = new NotesService()
