@@ -50,7 +50,6 @@ export class Note {
     `
   }
 
-  // <!-- <div class="col">School</div> -->
 
   get ComputeTitle() {
     if (this.title) {
